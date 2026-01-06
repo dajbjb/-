@@ -1,0 +1,55 @@
+:root{
+  --bg:#0f1724;
+  --muted:#9aa4b2;
+  --accent:#ff3860;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(180deg,#071026 0%, #0f1724 100%);
+  color:var(--muted);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+}
+main{padding:24px}
+.heart{
+  background:transparent;
+  border:none;
+  color:var(--muted);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+  padding:12px 18px;
+  border-radius:999px;
+  transition:transform .12s ease, background .12s ease;
+}
+.heart:active{transform:scale(.98)}
+.heart svg{display:block; filter:drop-shadow(0 6px 20px rgba(2,6,23,.6));}
+/* default outline heart */
+#heartPath{fill:transparent;stroke:var(--muted);stroke-width:1.2;transition:fill .25s ease,stroke .2s ease,transform .2s ease}
+.heart .label{color:var(--muted);font-weight:600}
+/* liked state */
+.heart.liked #heartPath{fill:var(--accent);stroke:var(--accent);transform-origin:50% 50%;}
+.heart.liked .label{color:var(--accent)}
+/* pop animation */
+.pop{
+  animation:pop .45s cubic-bezier(.2,.9,.3,1);
+}
+@keyframes pop{
+  0%{transform:scale(1)}
+  40%{transform:scale(1.35)}
+  70%{transform:scale(.95)}
+  100%{transform:scale(1)}
+}
+/* particle styles */
+.particle{
+  position:fixed;
+  width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:1000;opacity:0.95;
+}
+@keyframes particle-move{
+  to{transform:translate(var(--tx), var(--ty)) scale(.3);opacity:0}
+}
